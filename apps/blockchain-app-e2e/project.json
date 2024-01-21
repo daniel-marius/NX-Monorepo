@@ -1,0 +1,30 @@
+{
+  "name": "blockchain-app-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/blockchain-app-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/blockchain-app-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "blockchain-app:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "blockchain-app:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "blockchain-app:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["blockchain-app"]
+}
