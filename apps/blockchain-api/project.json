@@ -1,0 +1,53 @@
+{
+  "name": "blockchain-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/blockchain-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/blockchain-api",
+        "main": "apps/blockchain-api/src/main.ts",
+        "tsConfig": "apps/blockchain-api/tsconfig.app.json",
+        "assets": ["apps/blockchain-api/src/assets"],
+        "webpackConfig": "apps/blockchain-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "blockchain-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "blockchain-api:build:development"
+        },
+        "production": {
+          "buildTarget": "blockchain-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/blockchain-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

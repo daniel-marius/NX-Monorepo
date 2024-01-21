@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@blockchain-app/blockchain/api-backend": [
+        "libs/blockchain/api-backend/src/index.ts"
+      ],
+      "@blockchain-app/blockchain/app-types": [
+        "libs/blockchain/app-types/src/index.ts"
+      ],
+      "@blockchain-app/blockchain/client-ui": [
+        "libs/blockchain/client-ui/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
